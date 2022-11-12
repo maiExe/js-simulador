@@ -1,3 +1,33 @@
+const arrayModelos = [];
+
+const model1 = new Modelo(1, 'Antara', 500000);
+const model2 = new Modelo(2, 'Bamboo', 700000);
+const model3 = new Modelo(3, 'Malibu', 1000000);
+
+arrayModelos.push(model1, model2, model3);
+
+// Ordenar modelos de mayor a menor precio
+
+const sortDesc = () => {
+    arrayModelos.sort((a, b) => b.costo - a.costo);
+    showOrderedList();
+};
+
+// Ordenar modelos de menor a mayor precio
+
+const sortAsc = () => {
+    arrayModelos.sort((a, b) => a.costo - b.costo);
+    showOrderedList();
+};
+
+// Funcion mostrar lista ordenada
+
+const showOrderedList = () => {
+    let array = [];
+    arrayModelos.forEach(departamento => array.push(departamento.model + ' $' + departamento.costo));
+    alert('Lista de costos' + '\n' + array.join('\n'));
+};
+
 // Inicializar variables
 let modelo = '';
 let costo = 0;
@@ -75,9 +105,21 @@ function getMensualidades(costo, meses) {
     pagoMensualTotal += pagoMensual + (pagoMensual * interesMensual);
 }
 
+function startSimulation() {
+    const orderBy = confirm('Ordenar por precio del más barato al más caro.');
+    if (orderBy) {
+        sortAsc();
+    } else {
+        sortDesc();
+    }
+
+    simulacionCreditoHipotecario();
+
+}
+
 //START MAIN
 
-simulacionCreditoHipotecario();
+startSimulation();
 
 
 
